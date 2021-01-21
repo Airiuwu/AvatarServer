@@ -3,10 +3,9 @@ from starlette.applications import Starlette
 from starlette.responses import FileResponse
 from starlette.routing import Route
 
-avatarFolder = "avatars"
-
 async def avatarRequest(request):
 	uid = request.path_params['id']
+	avatarFolder = "avatars"
 
 	if os.path.isfile("{}/{}.png".format(avatarFolder, uid)):
 		return FileResponse("{}/{}.png".format(avatarFolder, uid))
