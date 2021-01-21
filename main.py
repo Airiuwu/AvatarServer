@@ -5,10 +5,7 @@ from starlette.routing import Route
 
 avatarFolder = "avatars"
 
-async def homepage(request):
-	return FileResponse("{}/-1.png".format(avatarFolder))
-
-async def avatarRequest(request):
+asasync def avatarRequest(request):
 	uid = request.path_params['id']
 
 	if os.path.isfile("{}/{}.png".format(avatarFolder, uid)):
@@ -27,10 +24,7 @@ def printConsole():
 	print("{} ╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝    ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝".format(colors.LIGHT_RED))	
 	print("											   {}".format(colors.ENDC))
 
-app = Starlette(routes=[
-	Route('/', endpoint=homepage, methods=['GET']),
-	Route('/{id:int}', endpoint=avatarRequest, methods=['GET'])
-])
+app = Starlette(routes=[Route('/{id:int}', endpoint=avatarRequest, methods=['GET'])])
 
 printConsole()
 
