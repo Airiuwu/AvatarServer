@@ -5,12 +5,11 @@ from starlette.routing import Route
 
 async def avatarRequest(request):
 	uid = request.path_params['id']
-	avatarFolder = "avatars"
 
-	if os.path.isfile("{}/{}.png".format(avatarFolder, uid)):
-		return FileResponse("{}/{}.png".format(avatarFolder, uid))
+	if os.path.isfile("avatars/{}.png".format(uid)):
+		return FileResponse("avatars/{}.png".format(uid))
 
-	return FileResponse("{}/-1.png".format(avatarFolder))
+	return FileResponse("avatars/-1.png")
 
 def printConsole():
 	os.system('cls' if os.name=='nt' else 'clear')
