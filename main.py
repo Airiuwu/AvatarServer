@@ -6,7 +6,7 @@ from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
 
 avatarFolder = "avatars"
 
-async def homepage():
+async def homepage(request):
 	return FileResponse("{}/-1.png".format(avatarFolder))
 
 async def avatarRequest(request):
@@ -28,7 +28,7 @@ def printConsole():
 	print("{} ╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝    ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝".format(colors.LIGHT_RED))	
 	print("											   {}".format(colors.ENDC))
 
-app = Starlette(debug=False, routes=[
+app = Starlette(routes=[
 	Route('/', endpoint=homepage, methods=['GET']),
 	Route('/{id:int}', endpoint=avatarRequest, methods=['GET'])
 ])
