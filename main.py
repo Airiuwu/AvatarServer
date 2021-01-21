@@ -5,7 +5,7 @@ from starlette.routing import Route
 
 avatarFolder = "avatars"
 
-asasync def avatarRequest(request):
+async def avatarRequest(request):
 	uid = request.path_params['id']
 
 	if os.path.isfile("{}/{}.png".format(avatarFolder, uid)):
