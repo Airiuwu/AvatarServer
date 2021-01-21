@@ -2,7 +2,6 @@ import os, uvicorn, colors
 from starlette.applications import Starlette
 from starlette.responses import FileResponse
 from starlette.routing import Route
-from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
 
 avatarFolder = "avatars"
 
@@ -33,8 +32,6 @@ app = Starlette(routes=[
 	Route('/{id:int}', endpoint=avatarRequest, methods=['GET'])
 ])
 
-app.add_middleware(ProxyHeadersMiddleware)
 printConsole()
 
-if __name__ == '__main__':
-	uvicorn.run(app, host="127.0.0.1", port="5000")
+uvicorn.run(app, host="127.0.0.1", port="5000")
