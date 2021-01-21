@@ -6,7 +6,7 @@ from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
 
 avatarFolder = "avatars"
 
-async def homepage(request):
+async def homepage():
 	return FileResponse("{}/-1.png".format(avatarFolder))
 
 async def avatarRequest(request):
