@@ -1,4 +1,4 @@
-import os, uvicorn, colors
+import os, uvicorn, utils
 from starlette.applications import Starlette
 from starlette.responses import FileResponse
 from starlette.routing import Route
@@ -13,6 +13,6 @@ async def avatarRequest(request):
 
 app = Starlette(routes=[Route('/{id:int}', endpoint=avatarRequest, methods=['GET'])])
 
-colors.printConsole()
+utils.printConsole()
 
 uvicorn.run(app, host="127.0.0.1", port=5000)
