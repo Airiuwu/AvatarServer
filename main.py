@@ -1,17 +1,8 @@
-import os, uvicorn, utils
+import uvicorn, utils, handlers
 from starlette.applications import Starlette
-from starlette.responses import FileResponse
 from starlette.routing import Route
 
-async def avatarRequest(request):
-	uid = request.path_params['id']
-
-	if os.path.isfile("avatars/{}.png".format(uid)):
-		return FileResponse("avatars/{}.png".format(uid))
-
-	return FileResponse("avatars/-1.png")
-
-app = Starlette(routes=[Route('/{id:int}', endpoint=avatarRequest, methods=['GET'])])
+app = Starlette(routes=[Route('/', endpoint=handlers.homepage, methods=['GET']),Route('/{id:int}', endpoint=handlers.avatarRequest, methods=['GET'])])
 
 utils.printConsole()
 
