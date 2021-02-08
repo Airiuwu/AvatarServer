@@ -3,19 +3,19 @@ from starlette.applications import Starlette
 from starlette.routing import Route
 from starlette.responses import FileResponse
 
+async def home(request):
+	return FileResponse("avatars/-1.png")
+
 async def avatarRequest(request):
 	uid = request.path_params['id']
 
-	if os.path.isfile("avatars/{}.png".format(uid)):
-		return FileResponse("avatars/{}.png".format(uid))
+	if os.path.isfile(f"avatars/{uid}.png"):
+		return FileResponse(f"avatars/{uid}.png")
 
-	return FileResponse("avatars/-1.png")
-
-async def homepage(request):
 	return FileResponse("avatars/-1.png")
 
 app = Starlette(routes=[
-    Route('/', endpoint=homepage, methods=['GET']),
+    Route('/', endpoint=home, methods=['GET']),
     Route('/{id:int}', endpoint=avatarRequest, methods=['GET'])
 ])
 
