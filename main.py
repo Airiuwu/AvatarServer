@@ -7,12 +7,12 @@ async def avatarRequest(request):
 	uid = request.path_params['id']
 
 	if os.path.isfile("avatars/{}.png".format(uid)):
-		await FileResponse("avatars/{}.png".format(uid))
+		return FileResponse("avatars/{}.png".format(uid))
 
-	await FileResponse("avatars/-1.png")
+	return FileResponse("avatars/-1.png")
 
 async def homepage(request):
-	await FileResponse("avatars/-1.png")
+	return FileResponse("avatars/-1.png")
 
 app = Starlette(routes=[
     Route('/', endpoint=homepage, methods=['GET']),
