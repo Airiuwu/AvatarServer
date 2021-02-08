@@ -9,7 +9,7 @@ async def home(request):
 async def avatarRequest(request):
 	uid = request.path_params['id']
 
-	if os.path.isfile(f"avatars/{uid}.png"):
+	if os.path.exists(f"avatars/{uid}.png"):
 		return FileResponse(f"avatars/{uid}.png")
 
 	return FileResponse("avatars/-1.png")
