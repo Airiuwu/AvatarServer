@@ -1,3 +1,2 @@
-uvicorn
-starlette
-aiofiles
+hypercorn
+quart
