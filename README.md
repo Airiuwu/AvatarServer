@@ -1,5 +1,5 @@
 # Avatar Server
-Just a small and simple avatar server written using the quart web server, meant to use with ripple source
+Just a small and simple avatar server written using the quart web server
 
 # Interested in using this Avatar Server??? :flushed:
 Setup instructions:
