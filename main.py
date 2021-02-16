@@ -1,22 +1,17 @@
-import os, uvicorn
-from starlette.applications import Starlette
-from starlette.routing import Route
-from starlette.responses import FileResponse
+import os
+from quart import Quart, send_file
 
-async def home(request):
-	return FileResponse("avatars/-1.png")
+app = Quart(__name__)
 
-async def avatarRequest(request):
-	uid = request.path_params['id']
+@app.route("/")
+async def homepage():
+	return await send_file("avatars/-1.png")
 
+@app.route("/<int:uid>")
+async def avatarRequest(uid):
 	if os.path.exists(f"avatars/{uid}.png"):
-		return FileResponse(f"avatars/{uid}.png")
+		return await send_file(f"avatars/{uid}.png")
 
-	return FileResponse("avatars/-1.png")
+	return await send_file("avatars/-1.png")
 
-app = Starlette(routes=[
-    Route('/', endpoint=home, methods=['GET']),
-    Route('/{id:int}', endpoint=avatarRequest, methods=['GET'])
-])
-
-uvicorn.run(app, host="127.0.0.1", port=5000)
+app.run()
