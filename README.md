@@ -1,5 +1,5 @@
 # Avatar Server
-Just a small and simple avatar server written using the quart web server
+Just a small and simple/asynchronous avatar server written using the quart web server
 
 # Interested in using this Avatar Server??? :flushed:
 Setup instructions:
