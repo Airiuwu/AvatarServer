@@ -12,6 +12,6 @@ async def avatarRequest(uid):
 	if os.path.exists(f"avatars/{uid}.png"):
 		return await send_file(f"avatars/{uid}.png")
 
-	return await send_file("avatars/-1.png")
+	return await send_file("avatars/{}.png".format(random.choice(defaultAvatars)))
 
 app.run()
