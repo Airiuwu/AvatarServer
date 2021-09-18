@@ -1,4 +1,4 @@
-import os
+from os import path
 from random import randint as randomNumber
 from quart import Quart, send_file
 
@@ -10,7 +10,7 @@ async def homepage():
 
 @app.route("/<int:uid>")
 async def avatarRequest(uid):
-	if os.path.exists(f"avatars/{uid}.png"):
+	if path.exists(f"avatars/{uid}.png"):
 		return await send_file(f"avatars/{uid}.png")
 
 	return await send_file(f"avatars/-{randomNumber(1, 5)}.png")
