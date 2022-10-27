@@ -1,6 +1,6 @@
-from os import path
 from random import randint as randomNumber
 from quart import Quart, send_file
+from aiofiles.os import path
 
 app = Quart(__name__)
 
@@ -10,7 +10,7 @@ async def homepage():
 
 @app.route("/<int:uid>")
 async def avatarRequest(uid):
-	if path.exists(f"avatars/{uid}.png"):
+	if await path.exists(f"avatars/{uid}.png"):
 		return await send_file(f"avatars/{uid}.png")
 
 	return await send_file(f"avatars/-{randomNumber(1, 5)}.png")
